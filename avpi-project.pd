@@ -1,0 +1,104 @@
+#N canvas 363 36 403 277 10;
+#X text 15 17 Gamepad-controlled wavetable synth with frequency modulation
+from a cosine wave operator.;
+#N canvas 65 153 620 361 guts 0;
+#X obj 40 299 outlet~;
+#X obj 116 297 outlet~;
+#X floatatom 55 12 5 0 0 0 - - -, f 5;
+#X obj 55 91 tabread4~ array1;
+#X obj 55 67 *~ 100;
+#X obj 55 37 phasor~ 220;
+#X obj 162 43 osc~ 440;
+#X obj 191 90 +~;
+#X floatatom 155 17 5 0 0 0 - - -, f 5;
+#X floatatom 274 39 5 1 100 0 - - -, f 5;
+#X obj 192 68 *~;
+#X obj 51 208 *~;
+#X obj 83 208 *~;
+#X obj 13 127 osc~ 0.4;
+#X obj 131 145 osc~ 0.2;
+#X obj 129 168 *~ 0.25;
+#X obj 17 156 *~ 0.25;
+#X obj 17 176 +~ 0.5;
+#X obj 131 190 +~ 0.5;
+#X obj 275 90 *~ 0.05;
+#X obj 268 117 +~ 0.05;
+#X obj 43 251 freeverb~;
+#X msg 204 184 wet 0.2;
+#X obj 204 160 loadbang;
+#X msg 204 207 damping 0.3;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array array1 100 float 1 black black;
+#A 0 2.48702e-05 0.00477848 0.614285 0.428571 0.3 0.228571 0.185714
+0.157143 0.142857 0.3 0.257143 0.214285 0.171428 0.142857 0.0857143
+0.103571 0.385714 0.4 0.414286 0.428572 0.442857 0.500001 0.528572
+0.578573 0.628573 0.528572 0.328571 0.325 0.321428 0.317857 0.357143
+0.471429 0.57143 0.514287 0.442858 0.371429 0.3 0.228571 0.157142 0.0285696
+-0.100003 -0.128574 -0.100003 -0.071431 -0.0428594 -0.0142878 0.0142838
+0.0428554 0.0999986 0.157142 0.212698 0.268254 0.32381 0.614287 0.685717
+0.590478 0.495239 0.4 0.408572 0.417143 0.425715 0.434286 0.442858
+0.471429 0.502382 0.533335 0.564287 0.59524 0.626192 0.657145 0.800003
+0.750003 0.700002 0.628573 0.557145 0.584288 0.611431 0.638574 0.665717
+0.69286 0.720003 0.747146 0.774289 0.801432 0.828575 0.0408145 0.0727875
+0.104761 0.136734 0.168706 0.200679 0.232652 0.264625 0.296598 0.328571
+0.12857 0.342856 -0.3 -0.257143 1;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 322 157 graph;
+#X connect 2 0 5 0;
+#X connect 3 0 11 0;
+#X connect 3 0 12 0;
+#X connect 4 0 7 0;
+#X connect 5 0 4 0;
+#X connect 6 0 10 0;
+#X connect 7 0 3 0;
+#X connect 8 0 6 0;
+#X connect 9 0 10 1;
+#X connect 9 0 19 0;
+#X connect 10 0 7 1;
+#X connect 11 0 21 0;
+#X connect 12 0 21 1;
+#X connect 13 0 16 0;
+#X connect 14 0 15 0;
+#X connect 15 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 11 1;
+#X connect 18 0 12 1;
+#X connect 19 0 13 0;
+#X connect 19 0 20 0;
+#X connect 20 0 14 0;
+#X connect 21 0 0 0;
+#X connect 21 1 1 0;
+#X connect 22 0 21 0;
+#X connect 23 0 22 0;
+#X connect 23 0 24 0;
+#X connect 24 0 21 0;
+#X restore 25 153 pd guts;
+#X obj 37 243 dac~;
+#X obj 79 174 line~;
+#X obj 64 200 *~;
+#X msg 79 153 \$1 20;
+#X obj 79 67 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 37 200 *~;
+#X obj 270 105 env~ 128;
+#X obj 270 127 - 100;
+#X obj 270 150 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 326 105 env~ 128;
+#X obj 326 127 - 100;
+#X obj 326 150 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X msg 323 61 \; pd dsp 1;
+#X msg 262 61 \; pd dsp 0;
+#X connect 1 0 7 0;
+#X connect 1 1 4 0;
+#X connect 3 0 4 1;
+#X connect 3 0 7 1;
+#X connect 4 0 11 0;
+#X connect 4 0 2 1;
+#X connect 5 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 0 2 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
